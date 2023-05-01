@@ -3,7 +3,7 @@
     Volatile - Official Source Code
     Credits: 
 
-    Development - RobloxArchiver & UptightSL @ github.com
+    Development - RobloxArchiver (Github @ RobloxArchiver) 
     Elerium UI Library - Singularity (V3rm @ King Singularity) (Discord @ Singularity#5490)
     Elerium UI Library (Slight Modifications) - RobloxArchiver
 
@@ -19,6 +19,22 @@ local Volatile = {
     Cycle = "Pre-Alpha",
 }
 
+function Volatile.CeleryLoaded()
+    if (getgenv().rnet) or (getgenv().setidentity) then
+        return "Celery Loaded"
+    else
+        return "Celery Not Loaded"
+    end
+end
+
+function Volatile.IsCeleryLoaded()
+    if (getgenv().rnet) or (getgenv().setidentity) then
+        return true
+    else
+        return false
+    end
+end
+
 local Elerium = getgenv().elerium
 
 local Main_Window = Elerium:AddWindow(string.format("Volatile v%s %s", Volatile.Version, Volatile.Cycle), {
@@ -27,6 +43,17 @@ local Main_Window = Elerium:AddWindow(string.format("Volatile v%s %s", Volatile.
     can_resize = true
 })
 
+--[[
+
+    Main Tab/Welcome Tab
+
+]]
+
 local Main_Tab = Main_Window:AddTab("Main")
 
 Main_Tab:AddLabel(string.format("Hello, %s!", LocalPlayer.Name))
+Main_Tab:AddLabel(Volatile.CeleryLoaded())
+
+local Rnet_Tab = Main_Window:AddTab("RNET")
+
+Rnet_Tab:AddLabel("RNET is a celery-specific set of scripts to allow modifcation of network.")
